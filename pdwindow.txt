@@ -1,0 +1,17 @@
+Pd 0.49-0 on Windows NT intel
+--------------------------------------------------------------------------------
+pdfontloader loaded DejaVuSansMono.ttf
+pdfontloader loaded DejaVuSansMono-Bold.ttf
+------------------ done with main ----------------------
+Connection from 'pd' to 'pd-gui' on 127.0.0.1:58748
+Tk 8.5.19
+Detected font: DejaVu Sans Mono
+Using font: DejaVu Sans Mono bold
+Loading plugin: C:/Program Files/Pd/bin/tcl/pd_deken.tcl
+[deken] Platform detected: Windows-i686-float32
+
+Loading plugin: C:/Program Files/Pd/bin/tcl/pd_docsdir.tcl
+[deken] Platform re-detected: Windows-amd64-float32
+
+The Pd window filtered 13 lines
+Pd documents directory: C:/Users/Tan/Documents/Pd
