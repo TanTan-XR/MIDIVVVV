@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="MidiKnobsDoc" LanguageVersion="2025.7.0-0369-g117540fa59" Version="0.128">
+  <NugetDependency Id="CoreLibDep" Location="VL.CoreLib" Version="2025.7.0-0369-g117540fa59" />
+  <NugetDependency Id="MidiDep" Location="VL.IO.Midi" Version="1.1.7" />
+  <Patch Id="MidiKnobsRootPatch">
+    <Canvas Id="MidiKnobsCanvas" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="MidiKnobsApp">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <CategoryReference Kind="Category" Name="Primitive" />
+      </p:NodeReference>
+      <Patch Id="MidiKnobsAppPatch">
+        <Canvas Id="MidiKnobsAppCanvas" CanvasType="Group">
+          <Node Bounds="150,120,60,19" Id="MidiInNode">
+            <p:NodeReference LastCategoryFullName="IO.Midi" LastDependency="VL.IO.Midi.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Midi" />
+              <Choice Kind="ProcessAppFlag" Name="MidiIn" />
+            </p:NodeReference>
+            <Pin Id="MidiInCtx" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="MidiInDevice" Name="Device" Kind="InputPin" />
+            <Pin Id="MidiInOutput" Name="Output" Kind="OutputPin" IsHidden="true" />
+            <Pin Id="MidiInResult" Name="Result" Kind="OutputPin" />
+            <Pin Id="MidiInIsOpen" Name="Is Open" Kind="OutputPin" />
+          </Node>
+          <Pad Id="DevicePad" Comment="Device" Bounds="150,90,160,19" ShowValueBox="true" isIOBox="true" Value="MPK Mini Mk II">
+            <p:TypeAnnotation LastCategoryFullName="IO.Midi" LastDependency="VL.IO.Midi.vl">
+              <Choice Kind="TypeFlag" Name="MidiInputDevice" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="IsOpenPad" Comment="Is Open" Bounds="230,130,60,19" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="252,180,80,19" Id="KnobChannelFilter">
+            <p:NodeReference LastCategoryFullName="IO.Midi.MessageFilter" LastDependency="VL.IO.Midi.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ChannelFilter" />
+            </p:NodeReference>
+            <Pin Id="Snona13FAnpLPki58z6Lne" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="KnobCFValue" Name="Value" Kind="InputPin" />
+            <Pin Id="KnobCFChannel" Name="Channel" Kind="InputPin" />
+            <Pin Id="KnobCFResult" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Pad Id="KnobChannelPad" Comment="Knob Channel" Bounds="337,21,60,19" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Integer32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="486,110,70,19" Id="KnobIndexNode">
+            <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="I" />
+            </p:NodeReference>
+            <Pin Id="JnoPH82YSPAPnbyGhZefLt" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="KnobIStart" Name="Start" Kind="InputPin" />
+            <Pin Id="KnobICount" Name="Count" Kind="InputPin" />
+            <Pin Id="KnobIOutput" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="KnobStartPad" Comment="Knob CC Start" Bounds="632,70,60,19" ShowValueBox="true" isIOBox="true" Value="77">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Integer32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="KnobCountPad" Comment="Knob CC Count" Bounds="628,130,60,19" ShowValueBox="true" isIOBox="true" Value="77">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Integer32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="KnobNumbersPad" Comment="Knob CC Numbers" Bounds="633,180,160,40" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="371,220,120,19" Id="KnobControllersState">
+            <p:NodeReference LastCategoryFullName="IO.Midi" LastDependency="VL.IO.Midi.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Midi" />
+              <Choice Kind="ProcessAppFlag" Name="ControllersState" />
+            </p:NodeReference>
+            <Pin Id="Q7gl3Nz0HEEOY7epOrnwo6" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="KnobCSValue" Name="Value" Kind="InputPin" />
+            <Pin Id="KnobCSControllers" Name="Controllers" Kind="InputPin" />
+            <Pin Id="KnobCSResult" Name="Result" Kind="OutputPin" />
+            <Pin Id="KnobCSOnData" Name="On Data" Kind="OutputPin" />
+          </Node>
+          <Pad Id="KnobValuesPad" Comment="Knob Values" Bounds="396,340,160,60" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="KnobOnDataPad" Comment="Knob On Data" Bounds="520,230,80,19" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="128,170,65,19" Id="MidiMonitorNode">
+            <p:NodeReference LastCategoryFullName="IO.Midi" LastDependency="VL.IO.Midi.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Monitor" />
+            </p:NodeReference>
+            <Pin Id="MAMwlxoRvagOuDd6YdtHnl" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="MidiMonInput" Name="Input" Kind="InputPin" />
+            <Pin Id="MidiMonChannelMsg" Name="Channel Message" Kind="OutputPin" />
+            <Pin Id="MidiMonCommon" Name="Common Messages" Kind="OutputPin" />
+            <Pin Id="MidiMonRealtime" Name="Realtime Messages" Kind="OutputPin" />
+            <Pin Id="MidiMonSysEx" Name="Sys Ex Messages" Kind="OutputPin" />
+          </Node>
+          <Pad Id="MidiMonChannelPad" Comment="Channel Message" Bounds="27,271,300,30" ShowValueBox="true" isIOBox="true" />
+        </Canvas>
+        <Link Id="DeviceToMidiIn" Ids="DevicePad,MidiInDevice" />
+        <Link Id="IsOpenLink" Ids="MidiInIsOpen,IsOpenPad" />
+        <Link Id="MidiToFilter" Ids="MidiInResult,KnobCFValue" />
+        <Link Id="MidiToMonitor" Ids="MidiInResult,MidiMonInput" />
+        <Link Id="ChannelToFilter" Ids="KnobChannelPad,KnobCFChannel" />
+        <Link Id="FilterToControllers" Ids="KnobCFResult,KnobCSValue" />
+        <Link Id="StartToI" Ids="KnobStartPad,KnobIStart" />
+        <Link Id="CountToI" Ids="KnobCountPad,KnobICount" />
+        <Link Id="IToControllers" Ids="KnobIOutput,KnobCSControllers" />
+        <Link Id="IToNumbersPad" Ids="KnobIOutput,KnobNumbersPad" />
+        <Link Id="ResultToValuesPad" Ids="KnobCSResult,KnobValuesPad" />
+        <Link Id="OnDataToPad" Ids="KnobCSOnData,KnobOnDataPad" />
+        <Link Id="ChannelMsgToPad" Ids="MidiMonChannelMsg,MidiMonChannelPad" />
+      </Patch>
+    </Node>
+  </Patch>
+</Document>
